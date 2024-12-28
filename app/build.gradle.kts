@@ -13,11 +13,11 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 }
 
 android {
-  namespace = "org.robok.scene.editor"
+  namespace = "org.robok.engine.feature.scene"
   compileSdk = 33
     
   defaultConfig {
-    applicationId = "org.robok.scene.editor"
+    applicationId = "org.robok.engine.feature.scene"
     minSdk = 26
     targetSdk = 33
     versionCode = 1
