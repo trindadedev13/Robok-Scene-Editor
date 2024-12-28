@@ -150,7 +150,7 @@ public class CameraInputController2 extends GestureDetector {
           controller.sceneObject = sc;
         } else {
           String objects = "";
-          for (SceneObject scene : SceneEditorView.instance.sceneState.objects) {
+          for (SceneObject scene : SceneEditorView.sceneState.objects) {
             objects += "," + scene.toString();
           }
 
@@ -310,8 +310,8 @@ public class CameraInputController2 extends GestureDetector {
       SceneObject closestObject = null;
       float closestDistance = Float.MAX_VALUE;
 
-      // if(SceneEditorView.instance.sceneState.objects != null){
-      for (SceneObject scene : SceneEditorView.instance.sceneState.objects) {
+      // if(SceneEditorView.sceneState.objects != null){
+      for (SceneObject scene : SceneEditorView.sceneState.objects) {
         BoundingBox bbox = new BoundingBox();
         scene.getModelInstance().calculateBoundingBox(bbox);
         bbox.mul(scene.getModelInstance().transform); // Aplicar transformação

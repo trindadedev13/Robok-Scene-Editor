@@ -34,10 +34,10 @@ import org.robok.engine.feature.scene.editor.drawing.DrawingRenderer
 import org.robok.engine.feature.scene.editor.objects.ObjectsCreator
 import org.robok.engine.feature.scene.editor.objects.SceneObject
 
-class SceneEditorView private constructor() : ApplicationAdapter() {
+class SceneEditorView: ApplicationAdapter() {
 
   companion object {
-    @JvmStatic val instance: SceneEditorView by lazy { SceneEditorView() }
+    @JvmStatic val sceneState = SceneState()
   }
 
   data class CameraState(
@@ -50,7 +50,6 @@ class SceneEditorView private constructor() : ApplicationAdapter() {
     var objects: MutableList<SceneObject> = mutableListOf()
   )
   
-  private val sceneState = SceneState()
   private val cameraState = CameraState()
 
   private lateinit var sceneManager: SceneManager

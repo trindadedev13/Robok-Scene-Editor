@@ -81,7 +81,7 @@ public class Model3DView extends ApplicationAdapter {
 
   public Model3DView() {
     instance = this;
-    SceneEditorView.instance.sceneState.objects = new ArrayList<>();
+    SceneEditorView.sceneState.objects = new ArrayList<>();
   }
 
   @Override
@@ -173,7 +173,7 @@ public class Model3DView extends ApplicationAdapter {
     shapeRenderer.end();
 
     onTime();
-    for (SceneObject scene : SceneEditorView.instance.sceneState.objects) {
+    for (SceneObject scene : SceneEditorView.sceneState.objects) {
       modelBatch.render(scene.getModelInstance());
     }
 
@@ -215,7 +215,7 @@ public class Model3DView extends ApplicationAdapter {
     modelInstance = new ModelInstance(modelB);
     modelInstance.transform.setToTranslation(0f, 0f, 0f);
 
-    SceneEditorView.instance.sceneState.objects.add(new SceneObject(modelInstance.model, size, modelInstance));
+    SceneEditorView.sceneState.objects.add(new SceneObject(modelInstance.model, size, modelInstance));
   }
 
   public static Vector3 getModelDimensions(Model model) {
@@ -284,7 +284,7 @@ public class Model3DView extends ApplicationAdapter {
   @Override
   public void dispose() {
     modelBatch.dispose();
-    for (SceneObject scene : SceneEditorView.instance.sceneState.objects) {
+    for (SceneObject scene : SceneEditorView.sceneState.objects) {
       scene.getModelInstance().model.dispose();
     }
     sceneManager.dispose();
@@ -302,7 +302,7 @@ public class Model3DView extends ApplicationAdapter {
 
   private void invokeObject(String objectCommand) {
     try {
-      ObjectsCreator createObjects = new ObjectsCreator(camController, SceneEditorView.instance.sceneState.objects);
+      ObjectsCreator createObjects = new ObjectsCreator(camController, SceneEditorView.sceneState.objects);
       Class<?> instance = createObjects.getClass();
       Method method = instance.getDeclaredMethod(objectCommand);
       method.invoke(createObjects);
