@@ -29,8 +29,8 @@ import com.badlogic.gdx.graphics.g3d.utils.MeshPartBuilder;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.math.Vector3;
 import java.util.List;
-import org.robok.engine.feature.scene.editor.view.SceneEditorView;
 import org.robok.engine.feature.scene.editor.controller.CameraInputController2;
+import org.robok.engine.feature.scene.editor.view.SceneEditorView;
 
 public class ObjectsCreator {
   private final List<SceneObject> sceneObjects;

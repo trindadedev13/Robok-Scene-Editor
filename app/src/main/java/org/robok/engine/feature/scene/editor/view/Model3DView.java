@@ -42,7 +42,6 @@ import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import net.mgsx.gltf.scene3d.attributes.PBRCubemapAttribute;
 import net.mgsx.gltf.scene3d.attributes.PBRTextureAttribute;
 import net.mgsx.gltf.scene3d.scene.SceneManager;
@@ -214,7 +213,9 @@ public class Model3DView extends ApplicationAdapter {
     modelInstance = new ModelInstance(modelB);
     modelInstance.transform.setToTranslation(0f, 0f, 0f);
 
-    SceneEditorView.getSceneState().getObjects().add(new SceneObject(modelInstance.model, size, modelInstance));
+    SceneEditorView.getSceneState()
+        .getObjects()
+        .add(new SceneObject(modelInstance.model, size, modelInstance));
   }
 
   public static Vector3 getModelDimensions(Model model) {
@@ -301,7 +302,8 @@ public class Model3DView extends ApplicationAdapter {
 
   private void invokeObject(String objectCommand) {
     try {
-      ObjectsCreator createObjects = new ObjectsCreator(camController, SceneEditorView.getSceneState().getObjects());
+      ObjectsCreator createObjects =
+          new ObjectsCreator(camController, SceneEditorView.getSceneState().getObjects());
       Class<?> instance = createObjects.getClass();
       Method method = instance.getDeclaredMethod(objectCommand);
       method.invoke(createObjects);
