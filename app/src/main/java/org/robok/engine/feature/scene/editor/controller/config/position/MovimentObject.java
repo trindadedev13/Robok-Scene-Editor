@@ -150,7 +150,7 @@ public class MovimentObject {
     SceneObject closestObject = null;
     float closestDistance = Float.MAX_VALUE;
 
-    for (SceneObject scene : SceneEditorView.sceneState.objects) {
+    for (SceneObject scene : SceneEditorView.getSceneState().getObjects()) {
       BoundingBox bbox = new BoundingBox();
       scene.getModelInstance().calculateBoundingBox(bbox);
       bbox.mul(scene.getModelInstance().transform);

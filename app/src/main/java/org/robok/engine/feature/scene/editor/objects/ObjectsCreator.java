@@ -66,7 +66,7 @@ public class ObjectsCreator {
     Model model = modelBuilder.end();
     ModelInstance instance = new ModelInstance(model);
     instance.transform.setToTranslation(controller.target.cpy());
-    SceneEditorView.sceneState.objects.add(new SceneObject(model, size, instance));
+    SceneEditorView.getSceneState().getObjects().add(new SceneObject(model, size, instance));
   }
 
   public void createTriangle() {
