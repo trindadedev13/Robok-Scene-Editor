@@ -31,22 +31,23 @@ import net.mgsx.gltf.scene3d.scene.SceneSkybox
 import net.mgsx.gltf.scene3d.utils.EnvironmentUtil
 import org.robok.engine.feature.scene.editor.controller.CameraInputController2
 import org.robok.engine.feature.scene.editor.drawing.DrawingRenderer
+import org.robok.engine.feature.scene.editor.objects.ObjectCommand
 import org.robok.engine.feature.scene.editor.objects.ObjectsCreator
 import org.robok.engine.feature.scene.editor.objects.SceneObject
 
 class SceneEditorView : ApplicationAdapter() {
 
   companion object {
-    @JvmStatic public val sceneState = SceneState()
+    @JvmStatic val sceneState = SceneState()
   }
 
   data class CameraState(
-    public var fov: Float = 60f,
-    public var width: Float = 0f,
-    public var height: Float = 0f,
+    var fov: Float = 60f,
+    var width: Float = 0f,
+    var height: Float = 0f,
   )
 
-  data class SceneState(public var objects: MutableList<SceneObject> = mutableListOf())
+  data class SceneState(var objects: MutableList<SceneObject> = mutableListOf())
 
   private val cameraState = CameraState()
 
@@ -102,11 +103,12 @@ class SceneEditorView : ApplicationAdapter() {
     cameraInputController2 = CameraInputController2(camera)
     Gdx.input.setInputProcessor(cameraInputController2)
   }
-
+  
   override fun create() {
     init()
     drawingRenderer = DrawingRenderer()
     modelBatch = ModelBatch()
+    command = ObjectCommand.CREATE_CUBE
   }
 
   override fun render() {
@@ -157,7 +159,10 @@ class SceneEditorView : ApplicationAdapter() {
   }
 
   private fun onTime() {
-    command?.let { invoke(it) }
+    command?.let {
+      invoke(it)
+      command = null
+    }
   }
 
   private fun renderObjects() {
