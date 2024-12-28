@@ -35,7 +35,7 @@ public class LibGDXFragment extends AndroidFragmentApplication {
     AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
     config.useGL30 = true; // Configuração GL30 conforme necessário
 
-    model3dView = SceneEditorView.instance
+    model3dView = SceneEditorView.instance;
 
     View libgdxView = initializeForView(model3dView, config);
     return libgdxView;
