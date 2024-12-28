@@ -28,6 +28,7 @@ import com.badlogic.gdx.math.collision.Ray;
 import java.util.ArrayList;
 import java.util.List;
 import org.robok.engine.feature.scene.editor.objects.SceneObject;
+import org.robok.engine.feature.scene.editor.view.SceneEditorView;
 
 public class MovimentObject {
 
@@ -149,7 +150,7 @@ public class MovimentObject {
     SceneObject closestObject = null;
     float closestDistance = Float.MAX_VALUE;
 
-    for (SceneObject scene : SceneObject.sceneObjects) {
+    for (SceneObject scene : SceneEditorView.sceneState.objects) {
       BoundingBox bbox = new BoundingBox();
       scene.getModelInstance().calculateBoundingBox(bbox);
       bbox.mul(scene.getModelInstance().transform);

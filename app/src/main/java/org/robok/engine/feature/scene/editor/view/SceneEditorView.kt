@@ -37,17 +37,17 @@ import org.robok.engine.feature.scene.editor.objects.SceneObject
 class SceneEditorView: ApplicationAdapter() {
 
   companion object {
-    @JvmStatic val sceneState = SceneState()
+    @JvmStatic public val sceneState = SceneState()
   }
 
   data class CameraState(
-    var fov: Float = 60f,
-    var width: Float = 0f, 
-    var height: Float = 0f
+    public var fov: Float = 60f,
+    public var width: Float = 0f, 
+    public var height: Float = 0f
   )
   
   data class SceneState(
-    var objects: MutableList<SceneObject> = mutableListOf()
+    public var objects: MutableList<SceneObject> = mutableListOf()
   )
   
   private val cameraState = CameraState()
