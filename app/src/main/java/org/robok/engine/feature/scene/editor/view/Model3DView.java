@@ -81,7 +81,6 @@ public class Model3DView extends ApplicationAdapter {
 
   public Model3DView() {
     instance = this;
-    SceneEditorView.getSceneState().getObjects() = new ArrayList<>();
   }
 
   @Override
