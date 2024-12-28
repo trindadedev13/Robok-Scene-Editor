@@ -16,7 +16,7 @@ package org.robok.engine.feature.scene.editor.view
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
+
 import com.badlogic.gdx.ApplicationAdapter
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver
@@ -34,7 +34,7 @@ import org.robok.engine.feature.scene.editor.drawing.DrawingRenderer
 import org.robok.engine.feature.scene.editor.objects.ObjectsCreator
 import org.robok.engine.feature.scene.editor.objects.SceneObject
 
-class SceneEditorView: ApplicationAdapter() {
+class SceneEditorView : ApplicationAdapter() {
 
   companion object {
     @JvmStatic public val sceneState = SceneState()
@@ -42,14 +42,12 @@ class SceneEditorView: ApplicationAdapter() {
 
   data class CameraState(
     public var fov: Float = 60f,
-    public var width: Float = 0f, 
-    public var height: Float = 0f
+    public var width: Float = 0f,
+    public var height: Float = 0f,
   )
-  
-  data class SceneState(
-    public var objects: MutableList<SceneObject> = mutableListOf()
-  )
-  
+
+  data class SceneState(public var objects: MutableList<SceneObject> = mutableListOf())
+
   private val cameraState = CameraState()
 
   private lateinit var sceneManager: SceneManager
@@ -60,16 +58,16 @@ class SceneEditorView: ApplicationAdapter() {
   private lateinit var cameraInputController2: CameraInputController2
   private lateinit var drawingRenderer: DrawingRenderer
   private lateinit var modelBatch: ModelBatch
-  
+
   var command: String? = null
-  
+
   private fun init() {
     initCamera()
     initSky()
     initSceneManager()
     initController()
   }
-  
+
   private fun initCamera() {
     val n = .02f // trindadedev: idk what is this
     cameraState.width = Gdx.graphics.width.toFloat()
@@ -78,7 +76,7 @@ class SceneEditorView: ApplicationAdapter() {
     camera.near = n / 1000f
     camera.far = 1000f
   }
-  
+
   private fun initSky() {
     environmentCubeMap =
       EnvironmentUtil.createCubemap(
@@ -90,7 +88,7 @@ class SceneEditorView: ApplicationAdapter() {
 
     skyBox = SceneSkybox(environmentCubeMap)
   }
-  
+
   private fun initSceneManager() {
     sceneManager = SceneManager()
     sceneManager.setCamera(camera)
@@ -99,7 +97,7 @@ class SceneEditorView: ApplicationAdapter() {
     sceneManager.environment.set(PBRTextureAttribute(PBRTextureAttribute.BRDFLUTTexture, brdfLut))
     sceneManager.setSkyBox(skyBox)
   }
-  
+
   private fun initController() {
     cameraInputController2 = CameraInputController2(camera)
     Gdx.input.setInputProcessor(cameraInputController2)
@@ -163,15 +161,11 @@ class SceneEditorView: ApplicationAdapter() {
   }
 
   private fun renderObjects() {
-    sceneState.objects.forEach { sceneObject ->
-      modelBatch.render(sceneObject.modelInstance)
-    }
+    sceneState.objects.forEach { sceneObject -> modelBatch.render(sceneObject.modelInstance) }
   }
 
   private fun disposeObjects() {
-    sceneState.objects.forEach { sceneObject ->
-      sceneObject.modelInstance.model.dispose()
-    }
+    sceneState.objects.forEach { sceneObject -> sceneObject.modelInstance.model.dispose() }
   }
 
   private fun invoke(objectCommand: String) {
