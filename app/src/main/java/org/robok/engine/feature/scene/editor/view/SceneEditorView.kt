@@ -70,12 +70,11 @@ class SceneEditorView : ApplicationAdapter() {
   }
 
   private fun initCamera() {
-    val n = .02f // trindadedev: idk what is this
     cameraState.width = Gdx.graphics.width.toFloat()
     cameraState.height = Gdx.graphics.height.toFloat()
     camera = PerspectiveCamera(cameraState.fov, cameraState.width, cameraState.height)
-    camera.near = n / 1000f
-    camera.far = 1000f
+    camera.near = 1f
+    camera.far = 300f
   }
 
   private fun initSky() {
@@ -112,7 +111,6 @@ class SceneEditorView : ApplicationAdapter() {
   }
 
   override fun render() {
-    cameraInputController2.updateRenderer(drawingRenderer.shapeRenderer)
     configureGDX()
     update()
 
@@ -124,6 +122,7 @@ class SceneEditorView : ApplicationAdapter() {
     Gdx.gl.glEnable(GL30.GL_DEPTH_TEST)
 
     drawingRenderer.start(camera)
+    cameraInputController2.updateRenderer(drawingRenderer.shapeRenderer)
     drawingRenderer.drawGrid3D(200f, 200f, 1f, 0.1f)
     drawingRenderer.end()
 
