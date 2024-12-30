@@ -41,11 +41,7 @@ class SceneEditorView : ApplicationAdapter() {
     @JvmStatic val sceneState = SceneState()
   }
 
-  data class CameraState(
-    var fov: Float = 60f,
-    var width: Float = 0f,
-    var height: Float = 0f,
-  )
+  data class CameraState(var fov: Float = 60f, var width: Float = 0f, var height: Float = 0f)
 
   data class SceneState(var objects: MutableList<SceneObject> = mutableListOf())
 
@@ -103,7 +99,7 @@ class SceneEditorView : ApplicationAdapter() {
     cameraInputController2 = CameraInputController2(camera)
     Gdx.input.setInputProcessor(cameraInputController2)
   }
-  
+
   override fun create() {
     init()
     drawingRenderer = DrawingRenderer()
@@ -124,10 +120,10 @@ class SceneEditorView : ApplicationAdapter() {
 
     drawingRenderer.start(camera)
     angle += 90f * Gdx.graphics.deltaTime
-    
+
     cameraInputController2.updateRenderer(drawingRenderer.shapeRenderer)
     drawingRenderer.drawGrid3DWithVerticalLines2(200f, 200f, 1f, 0.1f, 1f, 100f)
-    drawingRenderer.drawRotatedSquare(0f,6f, 4f,angle)
+    drawingRenderer.drawRotatedSquare(0f, 6f, 4f, angle)
     drawingRenderer.end()
 
     renderObjects()
@@ -145,7 +141,6 @@ class SceneEditorView : ApplicationAdapter() {
     modelBatch.dispose()
     disposeObjects()
   }
-  
 
   private fun update() {
     val time = Gdx.graphics.deltaTime
