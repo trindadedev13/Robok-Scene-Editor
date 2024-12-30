@@ -22,27 +22,28 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
-import android.widget.FrameLayout
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.commit
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.material3.MaterialTheme
 import com.badlogic.gdx.backends.android.AndroidFragmentApplication
+import org.robok.engine.compose.GDXWidget
+import org.robok.engine.compose.rememberGDXState
 import org.robok.engine.feature.scene.editor.fragment.LibGDXFragment
 
-class MainActivity : AppCompatActivity(), AndroidFragmentApplication.Callbacks {
+class MainActivity : ComponentActivity(), AndroidFragmentApplication.Callbacks {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    val frame = FrameLayout(this).apply { id = View.generateViewId() }
-
-    frame.post {
-      val fragment = LibGDXFragment()
-      supportFragmentManager.commit { replace(frame.id, fragment) }
+    hideSystemUI();
+    setContent {
+      MaterialTheme {
+        val state = rememberGDXState()
+        GDXWidget(state)
+      }
     }
-
-    setContentView(frame)
-    hideSystemUI()
   }
-
+  
+  @Deprecated("Use EdgeToEdge instead.")
   private fun hideSystemUI() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
       window.setDecorFitsSystemWindows(false)
@@ -58,6 +59,6 @@ class MainActivity : AppCompatActivity(), AndroidFragmentApplication.Callbacks {
   }
 
   override fun exit() {
-    // TODO: Implement this method
+    finish()
   }
 }
