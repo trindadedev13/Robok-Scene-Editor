@@ -28,13 +28,12 @@ import androidx.compose.material3.MaterialTheme
 import com.badlogic.gdx.backends.android.AndroidFragmentApplication
 import org.robok.engine.compose.GDXWidget
 import org.robok.engine.compose.rememberGDXState
-import org.robok.engine.feature.scene.editor.fragment.LibGDXFragment
 
 class MainActivity : ComponentActivity(), AndroidFragmentApplication.Callbacks {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    hideSystemUI();
+    hideSystemUI()
     setContent {
       MaterialTheme {
         val state = rememberGDXState()
@@ -42,7 +41,7 @@ class MainActivity : ComponentActivity(), AndroidFragmentApplication.Callbacks {
       }
     }
   }
-  
+
   @Deprecated("Use EdgeToEdge instead.")
   private fun hideSystemUI() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
