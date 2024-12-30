@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "Scene Editor"
 
 include(":app")
+include(":feature:scene")

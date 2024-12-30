@@ -59,6 +59,7 @@ class SceneEditorView : ApplicationAdapter() {
   private lateinit var cameraInputController2: CameraInputController2
   private lateinit var drawingRenderer: DrawingRenderer
   private lateinit var modelBatch: ModelBatch
+  private var angle = 0f
 
   var command: String? = null
 
@@ -122,8 +123,11 @@ class SceneEditorView : ApplicationAdapter() {
     Gdx.gl.glEnable(GL30.GL_DEPTH_TEST)
 
     drawingRenderer.start(camera)
+    angle += 90f * Gdx.graphics.deltaTime
+    
     cameraInputController2.updateRenderer(drawingRenderer.shapeRenderer)
-    drawingRenderer.drawGrid3D(200f, 200f, 1f, 0.1f)
+    drawingRenderer.drawGrid3DWithVerticalLines2(200f, 200f, 1f, 0.1f, 1f, 100f)
+    drawingRenderer.drawRotatedSquare(0f,6f, 4f,angle)
     drawingRenderer.end()
 
     renderObjects()
@@ -141,6 +145,7 @@ class SceneEditorView : ApplicationAdapter() {
     modelBatch.dispose()
     disposeObjects()
   }
+  
 
   private fun update() {
     val time = Gdx.graphics.deltaTime
