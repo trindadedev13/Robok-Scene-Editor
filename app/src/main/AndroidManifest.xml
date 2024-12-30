@@ -10,7 +10,7 @@
     android:windowLayoutInDisplayCutoutMode="shortEdges"
     android:theme="@style/AppTheme">
     <activity
-      android:name="org.robok.engine.feature.scene.editor.MainActivity"
+      android:name="org.robok.engine.MainActivity"
       android:exported="true"
       android:screenOrientation="landscape">
       <intent-filter>
